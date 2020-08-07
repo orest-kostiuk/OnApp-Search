@@ -2,8 +2,6 @@ require 'pry'
 require 'json'
 class SimpleJsonSearch
 
-	attr_reader :result
-
 	def initialize(query)
 		@search_query = query
 		@data = []
