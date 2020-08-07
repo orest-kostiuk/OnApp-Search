@@ -6,14 +6,14 @@ describe SimpleJsonSearch do
 		let(:query) { 'Common Lisp' }
 		let(:response) {[
 			{
-        'Name': 'Common Lisp',
-        'Type': 'Compiled, Interactive mode, Object-oriented class-based, Reflective',
-        'Designed by': 'Scott Fahlman, Richard P. Gabriel, Dave Moon, Guy Steele, Dan Weinreb'
+        'Name' => 'Common Lisp',
+        'Type' => 'Compiled, Interactive mode, Object-oriented class-based, Reflective',
+        'Designed by' => 'Scott Fahlman, Richard P. Gabriel, Dave Moon, Guy Steele, Dan Weinreb'
       }
 		]}
 
 		it 'Common Lisp' do
-			expect(json_search.call).to eql(response)
+			expect(json_search.call).to eq(response)
 		end
 	end
 
@@ -21,16 +21,16 @@ describe SimpleJsonSearch do
 		let(:query) { 'Interpreted "Thomas Eugene"' }
 		let(:bas) {[
 			{
-				'Name': 'BASIC',
-				'Type': 'Imperative, Compiled, Procedural, Interactive mode, Interpreted',
-				'Designed by': 'John George Kemeny, Thomas Eugene Kurtz'
+				'Name' => 'BASIC',
+				'Type' => 'Imperative, Compiled, Procedural, Interactive mode, Interpreted',
+				'Designed by' => 'John George Kemeny, Thomas Eugene Kurtz'
 			}
 		]}
 		let(:has) {[
 			{
-				'Name': 'Haskell',
-				'Type': 'Compiled, Functional, Metaprogramming, Interpreted, Interactive mode',
-				'Designed by': "Simon Peyton Jones, Lennart Augustsson, Dave Barton, Brian Boutel, Warren Burton, Joseph Fasel,
+				'Name' => 'Haskell',
+				'Type' => 'Compiled, Functional, Metaprogramming, Interpreted, Interactive mode',
+				'Designed by' => "Simon Peyton Jones, Lennart Augustsson, Dave Barton, Brian Boutel, Warren Burton, Joseph Fasel,
 											  Kevin Hammond, Ralf Hinze, Paul Hudak, John Hughes, Thomas Johnsson, Mark Jones,
 											  John Launchbury, Erik Meijer, John Peterson, Alastair Reid, Colin Runciman, Philip Wadler"
 			}
@@ -41,26 +41,26 @@ describe SimpleJsonSearch do
 		end
 
 		it 'Interpreted "Thomas Eugene" not eql Haskell' do
-			expect(json_search.call ).to eql(has)
+			expect(json_search.call ).to_not eql(has)
 		end
 	end
 
 	context 'search by different keys' do
 		let(:query) { 'Scripting Microsoft' }
 		let(:js) {{
-			'Name': 'JScript',
-			'Type': 'Curly-bracket, Procedural, Reflective, Scripting',
-			'Designed by': 'Microsoft'
+			'Name'=> 'JScript',
+			'Type'=> 'Curly-bracket, Procedural, Reflective, Scripting',
+			'Designed by'=> 'Microsoft'
 		}}
 		let(:vb) {{
-			'Name': 'VBScript',
-			'Type': 'Interpreted, Procedural, Scripting, Object-oriented class-based',
-			'Designed by': 'Microsoft'
+			'Name'=> 'VBScript',
+			'Type'=> 'Interpreted, Procedural, Scripting, Object-oriented class-based',
+			'Designed by'=> 'Microsoft'
 		}}
 		let(:wp) {{
-			'Name': 'Windows PowerShell',
-			'Type': 'Command line interface, Curly-bracket, Interactive mode, Interpreted, Scripting',
-			'Designed by': 'Microsoft'
+			'Name'=> 'Windows PowerShell',
+			'Type'=> 'Command line interface, Curly-bracket, Interactive mode, Interpreted, Scripting',
+			'Designed by'=> 'Microsoft'
 		}}
 		it 'Scripting Microsoft' do
 			expect(json_search.call).to eql([js, vb, wp])
@@ -70,24 +70,24 @@ describe SimpleJsonSearch do
 	context 'filter' do
 		let(:query) { 'john --array' }
 		let(:bas) {{
-			'Name':  'BASIC',
-			'Type':  'Imperative, Compiled, Procedural, Interactive mode, Interpreted',
-			'Designed by':  "John George Kemeny, Thomas Eugene Kurtz"
+			'Name'=>  'BASIC',
+			'Type'=>  'Imperative, Compiled, Procedural, Interactive mode, Interpreted',
+			'Designed by'=>  "John George Kemeny, Thomas Eugene Kurtz"
 		}}
 		let(:has) {{
-			'Name':  'Haskell',
-			'Type':  'Compiled, Functional, Metaprogramming, Interpreted, Interactive mode',
-			'Designed by':  'Simon Peyton Jones, Lennart Augustsson, Dave Barton, Brian Boutel, Warren Burton, Joseph Fasel, Kevin Hammond, Ralf Hinze, Paul Hudak, John Hughes, Thomas Johnsson, Mark Jones, John Launchbury, Erik Meijer, John Peterson, Alastair Reid, Colin Runciman, Philip Wadler'
+			'Name'=>  'Haskell',
+			'Type'=>  'Compiled, Functional, Metaprogramming, Interpreted, Interactive mode',
+			'Designed by'=>  'Simon Peyton Jones, Lennart Augustsson, Dave Barton, Brian Boutel, Warren Burton, Joseph Fasel, Kevin Hammond, Ralf Hinze, Paul Hudak, John Hughes, Thomas Johnsson, Mark Jones, John Launchbury, Erik Meijer, John Peterson, Alastair Reid, Colin Runciman, Philip Wadler'
 		}}
 		let(:lis) {{
-			'Name':  'Lisp',
-			'Type':  'Metaprogramming, Reflective',
-			'Designed by':  'John McCarthy'
+			'Name'=>  'Lisp',
+			'Type'=>  'Metaprogramming, Reflective',
+			'Designed by'=>  'John McCarthy'
 		}}
 		let(:s) {{
-			'Name':  'S-Lang',
-			'Type':  'Curly-bracket, Interpreted, Procedural, Scripting, Interactive mode',
-			'Designed by':  'John E. Davis'
+			'Name'=>  'S-Lang',
+			'Type'=>  'Curly-bracket, Interpreted, Procedural, Scripting, Interactive mode',
+			'Designed by'=>  'John E. Davis'
 		}}
 		it 'john --array' do
 			expect(json_search.call).to eql([bas, has, lis, s])
